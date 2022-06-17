@@ -17,6 +17,7 @@
 
 // instruction opcode
 `define RVOP_ADDI   7'b0010011
+`define RVOP_BLTU   7'b1100011
 `define RVOP_BEQ    7'b1100011
 `define RVOP_LUI    7'b0110111
 `define RVOP_BNE    7'b1100011
@@ -30,6 +31,7 @@
 `define RVF3_ADDI   3'b000
 `define RVF3_BEQ    3'b000
 `define RVF3_BNE    3'b001
+`define RVF3_BLTU   3'b110
 `define RVF3_ADD    3'b000
 `define RVF3_OR     3'b110
 `define RVF3_SRL    3'b101

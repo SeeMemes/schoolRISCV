@@ -162,7 +162,7 @@ module sr_control
     input     [ 6:0] cmdOp,
     input     [ 2:0] cmdF3,
     input     [ 6:0] cmdF7,
-    input            aluZero,
+    input            aluZero,        
     output           pcSrc, 
     output reg       regWrite, 
     output reg       aluSrc,
@@ -193,6 +193,7 @@ module sr_control
 
             { `RVF7_ANY,  `RVF3_BEQ,  `RVOP_BEQ  } : begin branch = 1'b1; condZero = 1'b1; aluControl = `ALU_SUB; end
             { `RVF7_ANY,  `RVF3_BNE,  `RVOP_BNE  } : begin branch = 1'b1; aluControl = `ALU_SUB; end
+            { `RVF7_ANY,  `RVF3_BLTU, `RVOP_BLTU } : begin branch = 1'b1; aluControl = `ALU_SLTU; end
         endcase
     end
 endmodule
@@ -203,6 +204,7 @@ module sr_alu
     input  [31:0] srcB,
     input  [ 2:0] oper,
     output        zero,
+    output  less, 
     output reg [31:0] result
 );
     always @ (*) begin
@@ -216,7 +218,7 @@ module sr_alu
         endcase
     end
 
-    assign zero   = (result == 0);
+    assign zero   = ( result == 0 );
 endmodule
 
 module sm_register_file
